@@ -1,4 +1,4 @@
-# Agentic Mesh 
+# 🕸️  Agentic Mesh 
 
 [![PyPI - License](https://img.shields.io/pypi/l/langchain-core?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Open Issues](https://img.shields.io/github/issues-raw/langchain-ai/langchain?style=flat-square)](https://github.com/anunay999/agentic-mesh/issues) 
