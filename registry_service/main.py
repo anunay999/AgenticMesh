@@ -11,7 +11,7 @@ Base.metadata.create_all(bind=engine)
 
 router = APIRouter()
 
-# Include the registry and discovery routers
+# Include the registry and discovery_service routers
 
 def parse_list(value: str):
     try:
