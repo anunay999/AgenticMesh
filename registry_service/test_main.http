@@ -1,0 +1,48 @@
+# Test your FastAPI endpoints
+
+GET http://127.0.0.1:8000/registry/agents/
+Accept: application/json
+
+
+
+### Register a new agent
+POST http://localhost:8000/registry/agents/
+Content-Type: application/json
+
+{
+  "agent_id": "001",
+  "purpose": "Data Processing",
+  "owner": "Owner A",
+  "capabilities": ["ML", "Data Cleaning"],
+  "policies": ["Policy1"],
+  "status": "active"
+}
+
+
+### Register a new agent
+POST http://localhost:8000/registry/agents/
+Content-Type: application/json
+
+{
+  "agent_id": "002",
+  "purpose": "Data Processing",
+  "owner": "Owner A",
+  "capabilities": ["ML", "Data Cleaning"],
+  "policies": ["Policy1"],
+  "status": "active"
+}
+
+### Get details of a registered agent
+GET http://localhost:8000/registry/agents/001
+
+### Update an existing agent's capabilities and status
+PUT http://localhost:8000/registry/agents/001
+Content-Type: application/json
+
+{
+  "capabilities": ["ML", "Data Cleaning", "Data Transformation"],
+  "status": "inactive"
+}
+
+### Query agents based on purpose
+GET http://localhost:8000/registry/agents/?purpose=Data Processing

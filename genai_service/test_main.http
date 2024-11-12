@@ -1,0 +1,17 @@
+### Test GenAI Service - Query with persona and user message (using API Key)
+POST http://localhost:8000/genai/query
+Content-Type: application/json
+
+{
+  "persona": "You are a developer tasked with pair programming.",
+  "user_prompt": "Hello! How can I improve my Python skills?"
+}
+
+### Test GenAI Service - Query with persona and user message (local environment, no API key required)
+POST http://localhost:8000/genai/query
+Content-Type: application/json
+
+{
+  "persona": "You are a helpful assistant focused on coding tutorials.",
+  "user_prompt": "Can you recommend some JavaScript frameworks?"
+}

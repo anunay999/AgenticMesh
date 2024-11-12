@@ -1,0 +1,11 @@
+### Discover agents by purpose
+GET http://localhost:8000/discovery/?purpose=Data Processing
+
+### Discover agents by a specific capability
+GET http://localhost:8000/discovery/?capability=ML
+
+### Discover agents with pagination (e.g., skip 0, limit 5)
+GET http://localhost:8000/discovery/?skip=0&limit=5
+
+### Discover agents sorted by status
+GET http://localhost:8000/discovery/?sort_by=status

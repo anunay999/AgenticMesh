@@ -1,0 +1,7 @@
+### Orchestrate a Workflow
+POST http://localhost:8000/orchestrator/plan
+Content-Type: application/json
+
+{
+   "task_description": "Teach golang to a 12 year old explaining all the key concepts"
+}
