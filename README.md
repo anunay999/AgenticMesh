@@ -1,6 +1,10 @@
 # Agentic Mesh 
 
-## Overview
+[![PyPI - License](https://img.shields.io/pypi/l/langchain-core?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Open Issues](https://img.shields.io/github/issues-raw/langchain-ai/langchain?style=flat-square)](https://github.com/anunay999/agentic-mesh/issues) 
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/anunay999/agentic-mesh)
+
 
 The Multi-Agent Task Orchestrator is a scalable and modular system designed to coordinate and execute tasks across a network of specialized agents. The orchestrator manages task dependencies, assigns tasks to the most suitable agents, and ensures that complex workflows are executed efficiently in a distributed environment.
 
