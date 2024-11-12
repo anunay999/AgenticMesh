@@ -15,12 +15,11 @@ The Multi-Agent Task Orchestrator is a scalable and modular system designed to c
 ## Project Structure
 
 ```
-├── orchestrator_service  # Main orchestrator executor logic
-├── registry_service  # Main orchestrator executor logic
-├── discovery_service  # Main orchestrator executor logic
-├── orchestrator_service  # Main orchestrator executor logic
-├── commmunication_service  # Main orchestrator executor logic
-├── execution_engine  # Main orchestrator executor logic
+├── orchestrator_service      # orchestrator logic
+├── registry_service          # registry logic
+├── discovery_service         # discovery logic
+├── commmunication_service    # communication logic
+├── execution_engine          # executor engine
 ├── requirements.txt          # Project dependencies
 └── README.md                 # Project documentation
 ```
