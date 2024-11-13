@@ -1,10 +1,14 @@
-from fastapi import FastAPI, HTTPException, Depends, APIRouter
+from typing import List, Optional
+
+from fastapi import FastAPI, HTTPException, Depends, APIRouter, Query
 from sqlalchemy.orm import Session
 from registry_service import models, schemas
 from registry_service.database import engine, Base, get_db
 import json  # Import json to handle conversion between strings and lists
 
 from registry_service.models import Agent
+from langchain_ollama import ChatOllama
+
 
 # Initialize the database
 Base.metadata.create_all(bind=engine)
@@ -97,36 +101,25 @@ def get_all_agents(db: Session = Depends(get_db)):
     ]
 
 
-def query_agents(purpose, capability, db: Session = Depends(get_db)):
-    query = db.query(models.Agent)
-    # Apply filters if provided
-    if purpose:
-        query = query.filter(Agent.purpose.contains(purpose))
-    if capability:
-        query = query.filter(Agent.capabilities.contains(capability))  # Assuming capabilities is a JSON/text field
+def query_agents(purpose: Optional[str], capabilities: List[str], db: Session):
+    agents = get_all_agents(db)
 
-    return query
+    filtered_agents = [
+        agent for agent in agents
+        if (purpose and agent["purpose"] == purpose) or
+           (capabilities and any(cap in agent["capabilities"] for cap in capabilities))
+    ]
+    return filtered_agents
 
-
-@router.get("/agents/search", response_model=list[schemas.AgentResponse])
-def search_agents(purpose: str = None, capability: str = None):
+@router.get("/agents/search/", response_model=List[schemas.AgentResponse])
+def search_agents(
+    purpose: Optional[str] = Query(None, description="Filter agents by purpose"),
+    capability: Optional[List[str]] = Query(None, description="Filter agents by one or more capabilities"),
+    db: Session = Depends(get_db)
+):
     """
     Searches for agents based on provided criteria (purpose, capabilities).
     """
-    agents = query_agents(purpose=purpose, capability=capability)
-    return {"matched_agents": agents}
-
-
-@router.post("/agents/engage")
-def engage_agent(agent_id: str):
-    """
-    Initiates engagement with a selected agent to perform a designated task.
-    """
-    # Retrieve agent from registry (using agent_id)
-    agent = get_agent(agent_id)
-    if not agent:
-        return {"error": "Agent not found"}
-
-    # Pass the task details to the agent for processing
-    # (This can involve sending a request to an agent-specific endpoint)
-    return {"status": "Engagement initiated", "agent": agent}
+    capabilities_list = capability if capability else []
+    agents = query_agents(purpose=purpose, capabilities=capabilities_list, db=db)
+    return agents

@@ -1,7 +1,9 @@
 from fastapi import APIRouter
 import requests
+from langchain_ollama import ChatOllama
 from pydantic import BaseModel
 import json
+from langchain_core.messages import AIMessage
 
 from orchestrator_service.response_schema import GenAIResponse, ExecutionPlanResponse
 
@@ -67,9 +69,4 @@ def generate_execution_plan(query: OrchestratorQuery) -> dict:
         }
     )
 
-    genai_response = GenAIResponse.model_validate(response.json())
-
-    # Accessing and parsing the content field (which is a stringified JSON)
-    execution_plan_content = json.loads(genai_response.choices[0].message.content)
-
-    return execution_plan_content  # This should be structured as a dictionary outlining the steps
+    return response.json()  # This should be structured as a dictionary outlining the steps

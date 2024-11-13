@@ -1,0 +1,7 @@
+### Orchestrate a Workflow
+POST http://localhost:8000/chat/query
+Content-Type: application/json
+
+{
+   "user_prompt": "Teach golang to a 12 year old explaining all the key concepts"
+}

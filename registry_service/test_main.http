@@ -24,10 +24,10 @@ POST http://localhost:8000/registry/agents/
 Content-Type: application/json
 
 {
-  "agent_id": "002",
-  "purpose": "Data Processing",
+  "agent_id": "003",
+  "purpose": "Teacher",
   "owner": "Owner A",
-  "capabilities": ["ML", "Data Cleaning"],
+  "capabilities": ["Maths", "Geometry"],
   "policies": ["Policy1"],
   "status": "active"
 }
@@ -44,5 +44,6 @@ Content-Type: application/json
   "status": "inactive"
 }
 
-### Query agents based on purpose
-GET http://localhost:8000/registry/agents/?purpose=Data Processing
+
+### Query agents based on capability
+GET http://localhost:8000/registry/agents/search/?capability=Data Transformation
